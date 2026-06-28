@@ -1070,19 +1070,19 @@ final public class ESS implements Element {
         return p(
                 h3(this.ORIGINAL_FILE.toString()),
                 h3(String.format("%s the level %s %s %s, in %s on %s (%1.0f/%1.0f xp).", name, level, race, gender, location, gameDate, xp, nexp)),
-                code(ul(
-                        li(String.format("Version string: %s", this.VERSION_STRING)),
+                ul(
+                        li(String.format("Version string: %s", this.VERSION_STRING != null ? this.VERSION_STRING : "(none)")),
                         li(String.format("Form version: %s", this.FORMVERSION)),
                         li(String.format("Time: %s", DATE.toString())),
                         this.HEADER.getCompression().isCompressed() && Float.isFinite(fileSize)
-                                ? li(String.format("Total size: %1.1f mb (%1.1f mb with %s)</li>", calculatedSize, fileSize, this.HEADER.getCompression()))
+                                ? li(String.format("Total size: %1.1f mb (%1.1f mb with %s)", calculatedSize, fileSize, this.HEADER.getCompression()))
                                 : li(String.format("Total size: %1.1f mb", calculatedSize)),
                         li(String.format("Papyrus size: %1.1f mb", papyrusSize)),
                         li(String.format("ChangeForms size: %1.1f mb", changeFormsSize)),
                         li(analysis
                                 .map(an -> String.format("Total ScriptData in load order: %1.1f mb", an.getScriptDataSize() / 1048576.0f))
                                 .orElse("Total ScriptData in load order: not available"))
-                ))
+                )
         ).toString();
     }
 
