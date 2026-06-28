@@ -1,8 +1,10 @@
 # Shell scripts must use LF — CRLF breaks them on Linux/macOS
-*.sh        text eol=lf
+*.sh            text eol=lf
+*.sh.template   text eol=lf
 
 # Windows batch files use CRLF
-*.bat       text eol=crlf
+*.bat               text eol=crlf
+*.bat.template      text eol=crlf
 
 # Source and config files: normalize to LF in repo, checkout with native endings
 *.java      text eol=lf
