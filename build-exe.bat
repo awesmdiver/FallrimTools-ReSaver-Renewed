@@ -1,7 +1,7 @@
 @echo off
 setlocal
 
-echo === FallrimTools ReSaver - Skyrim Save Editor (Renewed) ===
+echo === FallrimTools ReSaver (Renewed) ===
 echo.
 
 REM ─── Load local build configuration ─────────────────────────────────────────
@@ -66,7 +66,7 @@ echo === Packaging with jpackage ===
   --java-options "--enable-native-access=javafx.graphics,javafx.base,ALL-UNNAMED" ^
   --name ReSaver ^
   --app-version 6.0 ^
-  --description "FallrimTools ReSaver - Skyrim Save Editor (Renewed)" ^
+  --description "FallrimTools ReSaver (Renewed)" ^
   --icon src\main\resources\Disk.ico ^
   --win-console ^
   --type app-image ^
