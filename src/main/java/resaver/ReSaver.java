@@ -66,6 +66,11 @@ public class ReSaver implements Callable<Integer> {
             com.formdev.flatlaf.FlatLightLaf.setup();
         }
 
+        // Start debug logging if previously enabled.
+        if (PREFS.getBoolean("settings.debuglog", false)) {
+            resaver.gui.DebugLogger.getInstance().setEnabled(true);
+        }
+
         // Set the font scaling.
         float fontScale = Math.max(0.5f, PREFS.getFloat("settings.fontScale", 1.0f));
 

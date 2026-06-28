@@ -77,17 +77,15 @@ public class AboutDialog {
             final java.net.JarURLConnection CONN = (JarURLConnection) RES.openConnection();
             final java.util.jar.Manifest MANIFEST = CONN.getManifest();
             final java.util.jar.Attributes ATTR = MANIFEST.getMainAttributes();
-            return new StringBuilder()
-                    .append(ATTR.getValue("Implementation-Version"))
-                    .append('.')
-                    .append(ATTR.getValue("Implementation-Build"))
-                    .append(" (")
-                    .append(ATTR.getValue("Built-Date"))
-                    .append(")");
+            StringBuilder sb = new StringBuilder().append(ATTR.getValue("Implementation-Version"));
+            String build = ATTR.getValue("Implementation-Build");
+            if (build != null) sb.append('.').append(build);
+            String date = ATTR.getValue("Built-Date");
+            if (date != null) sb.append(" (").append(date).append(")");
+            return sb;
         } catch (IOException | ClassCastException ex) {
             return "(development version)";
         }
-
     }
 
     static final private Logger LOG = Logger.getLogger(AboutDialog.class.getCanonicalName());

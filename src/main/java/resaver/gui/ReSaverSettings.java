@@ -79,14 +79,6 @@ public class ReSaverSettings extends JDialog {
             }
 
             {
-                final JCheckBox ALWAYSPARSEMODS = new JCheckBox(I18N.getString("SETTINGS_AUTO_PARSEPLUGINS"), PREFS.getBoolean("settings.alwaysParsePlugins", true)); //NOI18N
-                final JPanel PANEL = new JPanel(new FlowLayout(FlowLayout.LEADING));
-                PANEL.add(ALWAYSPARSEMODS);
-                LEFT.add(PANEL);
-                ALWAYSPARSEMODS.addActionListener(e -> PREFS.putBoolean("settings.alwaysParsePlugins", ALWAYSPARSEMODS.isSelected())); //NOI18N
-            }
-
-            {
                 final JCheckBox INDISC = new JCheckBox(I18N.getString("SETTINGS_INDISCRIMINATE_PARSING"), PREFS.getBoolean("settings.parseIndiscriminate", false)); //NOI18N
                 final JPanel PANEL = new JPanel(new FlowLayout(FlowLayout.LEADING));
                 PANEL.add(INDISC);
@@ -116,6 +108,25 @@ public class ReSaverSettings extends JDialog {
                 PANEL.add(JAVAFX);
                 RIGHT.add(PANEL);
                 JAVAFX.addActionListener(e -> PREFS.putBoolean("settings.javafx", JAVAFX.isSelected())); //NOI18N
+            }
+
+            {
+                final String logPath = DebugLogger.getLogDir().resolve("debug_0.log").toString();
+                final JCheckBox DEBUG = new JCheckBox(I18N.getString("SETTINGS_DEBUG_LOG"), PREFS.getBoolean("settings.debuglog", false));
+                final JLabel PATH_LABEL = new JLabel(I18N.getString("SETTINGS_DEBUG_LOG_PATH") + " " + logPath);
+                PATH_LABEL.setEnabled(DEBUG.isSelected());
+                final JPanel CBPANEL = new JPanel(new FlowLayout(FlowLayout.LEADING));
+                final JPanel PATHPANEL = new JPanel(new FlowLayout(FlowLayout.LEADING));
+                CBPANEL.add(DEBUG);
+                PATHPANEL.add(PATH_LABEL);
+                RIGHT.add(CBPANEL);
+                RIGHT.add(PATHPANEL);
+                DEBUG.addActionListener(e -> {
+                    boolean on = DEBUG.isSelected();
+                    PREFS.putBoolean("settings.debuglog", on);
+                    PATH_LABEL.setEnabled(on);
+                    DebugLogger.getInstance().setEnabled(on);
+                });
             }
 
             {
