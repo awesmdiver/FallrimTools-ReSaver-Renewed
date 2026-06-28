@@ -4,3 +4,4 @@ dist/
 *.jar
 !src/**/*.jar
 build-config.bat
+build-config.sh

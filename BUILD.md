@@ -2,14 +2,14 @@
 
 ## Requirements
 
-| Tool | Minimum version | Notes |
-|------|----------------|-------|
-| JDK  | **21** | Any distribution — see below |
-| Apache Maven | 3.9+ | Must be on `PATH` or configured in `build-config.bat` |
+| Tool | Minimum | Recommended |
+|------|---------|-------------|
+| JDK  | 21      | Latest LTS  |
+| Apache Maven | 3.9+ | 3.9.x |
 
-### Supported JDK distributions (21+)
+### Supported JDK distributions
 
-All mainstream JDK distributions at version 21 or later are supported:
+All mainstream JDK distributions at version 21 or later are supported on all platforms:
 
 | Distribution | Download |
 |---|---|
@@ -20,91 +20,199 @@ All mainstream JDK distributions at version 21 or later are supported:
 | Oracle JDK | https://oracle.com/java/technologies/downloads |
 | GraalVM | https://graalvm.org |
 
-> **End users do not need Java.** The built `.exe` bundles its own JRE via
-> jpackage, so only developers building from source need a JDK.
+> **End users do not need Java installed.** The packaged app bundles its own
+> JRE via jpackage. Only developers building from source need a JDK.
 
-Newer JDK versions (22, 23, 24, 25, …) also work — the bytecode targets Java 21
-so any later JVM runs it.
+Newer versions (22, 23, 24, 25 …) also work — the bytecode targets Java 21 so
+any later JVM runs it without modification.
 
-## Quick setup
+---
 
-### 1. Java
+## Windows
 
-Install a JDK 21+ from any of the distributions above. Set `JAVA_HOME` to the
-installation directory (most JDK installers do this automatically).
+### 1. Install JDK 21+
 
-Verify: `java -version` should print `21` or higher.
+Download any distribution from the table above. Most installers will set
+`JAVA_HOME` automatically. Verify:
 
-### 2. Maven
+```bat
+java -version
+```
 
-Install [Apache Maven](https://maven.apache.org/download.cgi) and add its `bin\`
-directory to your `PATH`.
+### 2. Install Maven
 
-Verify: `mvn -version` should print `3.9` or higher.
+Download from https://maven.apache.org/download.cgi, extract to a folder, and
+add its `bin\` directory to your `PATH`. Verify:
 
-### 3. build-config.bat (optional)
+```bat
+mvn -version
+```
 
-If `JAVA_HOME` and `mvn` are already available in your environment you can skip
-this step.
+### 3. Configure paths (optional)
 
-If you need to point to a specific JDK or Maven installation:
+If `JAVA_HOME` and `mvn` are already on your `PATH` you can skip this step.
+
+Otherwise, copy the template and fill in your paths:
 
 ```bat
 copy build-config.bat.template build-config.bat
 ```
 
-Open `build-config.bat` in a text editor and uncomment / fill in the two paths.
-This file is listed in `.gitignore` so your local paths are never committed.
+Open `build-config.bat` in a text editor and uncomment the lines for
+`JPACKAGE_JDK` and/or `MVN`. This file is git-ignored so your local paths
+are never committed.
 
-## Building
+### 4. Build
 
-### Full build — produces `dist\ReSaver\ReSaver.exe`
+**Full build** — produces `dist\ReSaver\ReSaver.exe`:
 
 ```bat
 build-exe.bat
 ```
 
-The script will:
-1. Compile and package the JAR with Maven
-2. Bundle the JDK and create a self-contained `app-image` with jpackage
-
-### Development run — launch directly from `target\`
+**Development run** — launch directly from `target\` without packaging:
 
 ```bat
 mvn package -DskipTests
-ReSaver.bat
+ReSaver.bat [save-file]
 ```
 
-`ReSaver.bat` accepts the same arguments as the packaged exe:
+---
 
-```bat
-ReSaver.bat path\to\save.ess
-ReSaver.bat --help
-ReSaver.bat --darktheme
+## Linux
+
+### 1. Install JDK 21+
+
+**Temurin (recommended)** — via package manager:
+
+```bash
+# Ubuntu / Debian
+sudo apt install temurin-21-jdk
+
+# Fedora / RHEL
+sudo dnf install temurin-21-jdk
+
+# Or via SDKMAN (works on any distro):
+curl -s "https://get.sdkman.io" | bash
+sdk install java 21.0.7-tem
 ```
 
-## Notes
+Set `JAVA_HOME` if your package manager doesn't do it automatically:
+
+```bash
+export JAVA_HOME=/usr/lib/jvm/temurin-21-amd64   # adjust path as needed
+export PATH="$JAVA_HOME/bin:$PATH"
+```
+
+Verify: `java -version`
+
+### 2. Install Maven
+
+```bash
+# Ubuntu / Debian
+sudo apt install maven
+
+# Fedora / RHEL
+sudo dnf install maven
+
+# Or via SDKMAN:
+sdk install maven
+```
+
+Verify: `mvn -version`
+
+### 3. Configure paths (optional)
+
+If `JAVA_HOME` and `mvn` are already on your `PATH` you can skip this step.
+
+```bash
+cp build-config.sh.template build-config.sh
+```
+
+Open `build-config.sh` and uncomment/set `JPACKAGE_JDK` and/or `MVN`.
+`build-config.sh` is git-ignored.
+
+### 4. Make scripts executable (first time only)
+
+```bash
+chmod +x build.sh ReSaver.sh
+```
+
+### 5. Build
+
+**Full build** — produces `dist/ReSaver/bin/ReSaver`:
+
+```bash
+./build.sh
+```
+
+**Development run** — launch directly from `target/` without packaging:
+
+```bash
+mvn package -DskipTests
+./ReSaver.sh [save-file]
+```
+
+### Notes for Linux users
+
+**Save file location** — Skyrim on Linux runs via Steam + Proton. Saves are
+stored inside the Proton prefix, typically at a path like:
+
+```
+~/.steam/steam/steamapps/compatdata/489830/pfx/drive_c/users/steamuser/
+    My Documents/My Games/Skyrim Special Edition/Saves/
+```
+
+The app won't auto-navigate there on first launch; use the file chooser to
+open a save once and ReSaver will remember the directory.
+
+**Mod Organizer 2** — MO2 on Linux is available natively via Flatpak
+(`com.modorganizer.ModOrganizer2`) or through Wine. The MO2 integration in
+ReSaver requires pointing it at the MO2 ini file manually via
+Options → Settings → Mod Organizer 2.
+
+**Display scaling** — ReSaver uses FlatLaf with HiDPI support. If text appears
+small on a high-DPI display, set the font scale under Options → Settings →
+General → Font scaling.
+
+---
+
+## macOS
+
+The process is the same as Linux. Use `build.sh` and `ReSaver.sh`.
+
+For jpackage on macOS, `--type app-image` produces a `dist/ReSaver/` directory.
+To produce a `.dmg` or `.pkg` change the `--type` flag in `build.sh`.
+
+Install JDK via Homebrew: `brew install --cask temurin@21`
+
+---
+
+## Notes (all platforms)
 
 ### Bundle size
 
-`build-exe.bat` uses `--runtime-image` (bundles the full JDK) rather than a
-jlink-based custom runtime image. This is because many JDK distributions no
-longer ship `jmods/`, which jlink requires. The resulting bundle is ~300–350 MB.
-If your JDK includes `jmods/` you can switch to jlink for a much smaller image.
+The build scripts use `--runtime-image` (bundles the full JDK) because many
+JDK distributions no longer ship `jmods/`, which jlink requires. The resulting
+bundle is ~300–350 MB. If your JDK has a `jmods/` directory you can switch to
+`--jlink-options` for a much smaller image.
 
-### Windows only
+### JavaFX platform selection
 
-The `.bat` build scripts and jpackage `--type app-image` target Windows.
-Building on Linux or macOS would require changing the jpackage target type
-(`--type deb`, `--type pkg`, etc.) and switching the JavaFX classifier in
-`pom.xml` from `win` to `linux` or `mac`.
+`pom.xml` uses OS-activated Maven profiles to select the correct JavaFX native
+classifier automatically (`win`, `linux`, or `mac`). No manual flag is needed —
+Maven detects the build platform. You can override manually if needed:
+
+```bash
+mvn package -Djavafx.platform=linux
+```
 
 ### Debug log
 
 When "Write debug log to file" is enabled (Options → Settings → General),
 log files are written to:
 
-- **Packaged exe**: same directory as `ReSaver.exe`
+- **Packaged build**: same directory as the launcher executable
 - **Dev launcher**: project root directory
 
 Logs rotate: up to 5 files × 10 MB each (`debug_0.log` … `debug_4.log`).

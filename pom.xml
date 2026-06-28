@@ -23,6 +23,8 @@
         <javafx.version>21</javafx.version>
         <timestamp>${maven.build.timestamp}</timestamp>
         <maven.build.timestamp.format>yyyy-MM-dd HH:mm</maven.build.timestamp.format>
+        <!-- Default platform classifier; overridden by OS-activated profiles below -->
+        <javafx.platform>win</javafx.platform>
     </properties>
 
     <dependencies>
@@ -52,25 +54,25 @@
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
             <version>${javafx.version}</version>
-            <classifier>win</classifier>
+            <classifier>${javafx.platform}</classifier>
         </dependency>
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-swing</artifactId>
             <version>${javafx.version}</version>
-            <classifier>win</classifier>
+            <classifier>${javafx.platform}</classifier>
         </dependency>
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-graphics</artifactId>
             <version>${javafx.version}</version>
-            <classifier>win</classifier>
+            <classifier>${javafx.platform}</classifier>
         </dependency>
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-base</artifactId>
             <version>${javafx.version}</version>
-            <classifier>win</classifier>
+            <classifier>${javafx.platform}</classifier>
         </dependency>
         <dependency>
             <groupId>com.j2html</groupId>
@@ -184,6 +186,28 @@
         </plugins>
         <finalName>${project.artifactId}</finalName>
     </build>
+
+    <!--
+        OS-activated profiles set javafx.platform to the correct JavaFX native classifier.
+        Windows uses the default 'win' set in <properties>; Linux and macOS override it.
+        On macOS both the unix and mac profiles activate; mac is defined last so it wins.
+    -->
+    <profiles>
+        <profile>
+            <id>javafx-linux</id>
+            <activation>
+                <os><family>unix</family></os>
+            </activation>
+            <properties><javafx.platform>linux</javafx.platform></properties>
+        </profile>
+        <profile>
+            <id>javafx-mac</id>
+            <activation>
+                <os><family>mac</family></os>
+            </activation>
+            <properties><javafx.platform>mac</javafx.platform></properties>
+        </profile>
+    </profiles>
 
     <!-- Dummy SCM kept for compatibility; buildnumber plugin removed -->
     <scm>

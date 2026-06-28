@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+# ─────────────────────────────────────────────────────────────────────────────
+#  ReSaver build configuration for Linux / macOS
+#
+#  HOW TO USE:
+#    Copy this file to build-config.sh and fill in the paths below.
+#    build-config.sh is listed in .gitignore so your local paths are never
+#    committed to git.
+#
+#  If JAVA_HOME and mvn are already available in your environment you don't
+#  need build-config.sh at all — build.sh and ReSaver.sh find them automatically.
+# ─────────────────────────────────────────────────────────────────────────────
+
+# Path to your JDK 21+ installation directory (NOT a JRE — must include
+# jpackage in the bin/ subfolder).
+# If not set here, JAVA_HOME environment variable is used.
+#
+# Common install locations:
+#   Temurin (Linux):   /usr/lib/jvm/temurin-21-amd64
+#   SDKMAN:            $HOME/.sdkman/candidates/java/21.0.7-tem
+#   Homebrew (macOS):  /opt/homebrew/opt/openjdk@21
+#   macOS pkg:         /Library/Java/JavaVirtualMachines/temurin-21.jdk/Contents/Home
+#
+# JPACKAGE_JDK="/path/to/your/jdk-21"
+
+
+# Path to the Maven executable.
+# If not set here, "mvn" from your system PATH is used.
+#
+# SDKMAN example:
+#   MVN="$HOME/.sdkman/candidates/maven/current/bin/mvn"
+#
+# MVN="/path/to/mvn"
