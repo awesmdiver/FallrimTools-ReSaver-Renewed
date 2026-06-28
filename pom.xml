@@ -8,7 +8,7 @@
     <artifactId>ReSaver</artifactId>
     <version>6.0</version>
     <packaging>jar</packaging>
-    <name>FallrimTools ReSaver</name>
+    <name>FallrimTools ReSaver - Skyrim Save Editor (Renewed)</name>
 
     <repositories>
         <repository>

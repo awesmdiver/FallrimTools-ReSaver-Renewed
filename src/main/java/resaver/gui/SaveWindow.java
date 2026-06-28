@@ -496,7 +496,7 @@ final public class SaveWindow extends JFrame {
         this.modified = false;
 
         if (this.save == null) {
-            final String TITLE = String.format("ReSaver %s: (no save loaded)", AboutDialog.getVersion());
+            final String TITLE = String.format("ReSaver Renewed %s: (no save loaded)", AboutDialog.getVersion());
             this.setTitle(TITLE);
 
         } else {
@@ -519,7 +519,7 @@ final public class SaveWindow extends JFrame {
                     ? (fullName.substring(0, MAXLEN) + "...")
                     : fullName);
 
-            final String TITLE = String.format("ReSaver %s: %s (%1.2f mb, digest = %08x)", AboutDialog.getVersion(), NAME, size, DIGEST);
+            final String TITLE = String.format("ReSaver Renewed %s: %s (%1.2f mb, digest = %08x)", AboutDialog.getVersion(), NAME, size, DIGEST);
             this.setTitle(TITLE);
         }
     }
