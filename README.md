@@ -29,7 +29,7 @@ ReSaver lets you inspect and edit Skyrim and Fallout 4 save files. It is most co
 | **Self-contained exe** | Windows `.exe` bundles its own JRE via jpackage — no Java installation required for end users |
 | **Debug log** | Options → Settings → General → "Write debug log to file" writes a rotating log alongside the executable |
 | **Generic build** | Build scripts auto-detect `JAVA_HOME` and `mvn` — no hardcoded developer paths |
-| **Bug fixes** | Version string `6.0.null` fixed; duplicate Settings checkbox removed; broken `logging.properties` fixed; noisy log messages at `INFO` demoted to `FINE` |
+| **Bug fixes** | Version string `6.0.null` fixed; duplicate Settings checkbox removed; broken `logging.properties` fixed; noisy log messages at `INFO` demoted to `FINE`; load success dialog showed file size and load time values transposed |
 
 ---
 
