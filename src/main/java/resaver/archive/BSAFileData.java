@@ -16,7 +16,6 @@
 package resaver.archive;
 
 import java.io.IOException;
-import java.nio.Buffer;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.channels.FileChannel;
@@ -37,7 +36,7 @@ public class BSAFileData {
             ByteBuffer buffer = ByteBuffer.allocate(record.FILESIZE);
             int bytesRead = channel.read(buffer);
             buffer.order(ByteOrder.LITTLE_ENDIAN);
-            ((Buffer) buffer).flip();
+            buffer.flip();
             if (bytesRead != record.FILESIZE) {
                 throw new IllegalStateException(String.format("Read %d bytes but expected %d bytes.", bytesRead, record.FILESIZE));
             }
@@ -71,7 +70,7 @@ public class BSAFileData {
                 uncompressedData.order(ByteOrder.LITTLE_ENDIAN);
                 return Optional.of(uncompressedData);
             }
-        } catch (net.jpountz.lz4.LZ4Exception | DataFormatException | IOException ex) {
+        } catch (DataFormatException | IOException ex) {
             return Optional.empty();
         }
     }

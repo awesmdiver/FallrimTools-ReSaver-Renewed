@@ -15,16 +15,13 @@
  */
 package mf;
 
-import java.nio.Buffer;
+import java.io.IOException;
 import java.nio.BufferUnderflowException;
 import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
 import static java.nio.charset.StandardCharsets.UTF_8;
 import java.util.Objects;
 import java.util.logging.Logger;
-import net.jpountz.lz4.LZ4Compressor;
-import net.jpountz.lz4.LZ4Factory;
-import net.jpountz.lz4.LZ4FastDecompressor;
 import org.mozilla.universalchardet.UniversalDetector;
 import resaver.ess.ESS;
 
@@ -138,7 +135,7 @@ public class BufferUtil {
      * @return The raw byte data, excluding the terminus (if any).
      */
     static public byte[] getZStringRaw(ByteBuffer buffer) {
-        final int start = ((Buffer) buffer).position();
+        final int start = buffer.position();
 
         //while (buffer.get() != 0);
         byte b = buffer.get();
@@ -146,8 +143,8 @@ public class BufferUtil {
             b = buffer.get();
         }
 
-        final int LENGTH = ((Buffer) buffer).position() - start;
-        ((Buffer) buffer).position(start);
+        final int LENGTH = buffer.position() - start;
+        buffer.position(start);
         
         if (LENGTH <= 0) {
             throw new IllegalArgumentException("Found invalid ZString length of " + LENGTH);
@@ -287,7 +284,7 @@ public class BufferUtil {
      * @throws java.util.zip.DataFormatException
      */
     static public ByteBuffer inflateZLIB(ByteBuffer compressed, int uncompressedSize) throws java.util.zip.DataFormatException {
-        int compressedSize = ((Buffer) compressed).limit() - ((Buffer) compressed).position();
+        int compressedSize = compressed.limit() - compressed.position();
         return inflateZLIB(compressed, uncompressedSize, compressedSize);
     }
 
@@ -332,13 +329,8 @@ public class BufferUtil {
      * @param uncompressedSize
      * @return
      */
-    static public ByteBuffer inflateLZ4(ByteBuffer compressed, int uncompressedSize) {
-        ByteBuffer uncompressed = ByteBuffer.allocate(uncompressedSize);
-        final LZ4Factory LZ4FACTORY = LZ4Factory.fastestInstance();
-        final LZ4FastDecompressor LZ4DECOMP = LZ4FACTORY.fastDecompressor();
-        LZ4DECOMP.decompress(compressed, uncompressed);
-        ((java.nio.Buffer) uncompressed).flip();
-        return uncompressed;
+    static public ByteBuffer inflateLZ4(ByteBuffer compressed, int uncompressedSize) throws IOException {
+        return LZ4Block.decompress(compressed, uncompressedSize);
     }
 
     /**
@@ -378,12 +370,7 @@ public class BufferUtil {
      * @return
      */
     static public ByteBuffer deflateLZ4(ByteBuffer uncompressed, int uncompressedSize) {
-        final LZ4Factory LZ4FACTORY = LZ4Factory.fastestInstance();
-        final LZ4Compressor LZ4COMP = LZ4FACTORY.fastCompressor();
-        final ByteBuffer COMPRESSED = ByteBuffer.allocate(LZ4COMP.maxCompressedLength(uncompressedSize));
-        LZ4COMP.compress(uncompressed, COMPRESSED);
-        ((java.nio.Buffer) COMPRESSED).flip();
-        return COMPRESSED;
+        return LZ4Block.compress(uncompressed, uncompressedSize);
     }
 
     /**

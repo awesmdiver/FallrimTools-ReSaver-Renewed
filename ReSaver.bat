@@ -6,6 +6,5 @@ REM Dev launcher — runs directly from target\ without packaging
   --add-reads javafx.graphics=ALL-UNNAMED ^
   --add-reads javafx.swing=ALL-UNNAMED ^
   --enable-native-access=javafx.graphics,javafx.base,ALL-UNNAMED ^
-  --sun-misc-unsafe-memory-access=allow ^
   -Xms512m -Xmx4g ^
   -jar target\ReSaver.jar %*

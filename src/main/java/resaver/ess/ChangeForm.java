@@ -294,7 +294,7 @@ final public class ChangeForm implements Element, AnalyzableElement, Linkable {
         if (this.ISCOMPRESSED) return ChangeForm.decompress(this.rawData, this.length2);
         else {
             ByteBuffer buf = ByteBuffer.allocate(this.rawData.length).put(this.rawData);
-            ((java.nio.Buffer)buf).flip();
+            buf.flip();
             return buf;
         }
     }

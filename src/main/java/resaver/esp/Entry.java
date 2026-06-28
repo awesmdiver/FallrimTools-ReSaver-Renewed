@@ -45,11 +45,10 @@ public interface Entry {
     static public java.nio.ByteBuffer advancingSlice(java.nio.ByteBuffer buffer, int newLimit) {
         // Make the new slice.
         java.nio.ByteBuffer newSlice = buffer.slice().order(java.nio.ByteOrder.LITTLE_ENDIAN);
-        ((java.nio.Buffer) newSlice).limit(newLimit);
+        newSlice.limit(newLimit);
 
         // Advance the original.
-        java.nio.Buffer buffer2 = buffer;
-        buffer2.position(buffer2.position() + newLimit);
+        buffer.position(buffer.position() + newLimit);
         
         return newSlice;
     }

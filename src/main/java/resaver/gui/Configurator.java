@@ -990,16 +990,16 @@ abstract public class Configurator {
      */
     static public boolean validFile(Path path) {
         if (null == path) {
-            LOG.log(Level.INFO, "invalid file: null.");
+            LOG.log(Level.FINE, "invalid file: null.");
             return false;
         } else if (Files.isDirectory(path)) {
-            LOG.log(Level.INFO, "invalid file: directory ({0})", path);
+            LOG.log(Level.FINE, "invalid file: directory ({0})", path);
             return false;
         } else if (!Files.isRegularFile(path)) {
-            LOG.log(Level.INFO, "invalid file: irregular ({0})", path);
+            LOG.log(Level.FINE, "invalid file: irregular ({0})", path);
             return false;
         } else if (!Files.isReadable(path)) {
-            LOG.log(Level.INFO, "invalid file: unreadable ({0})", path);
+            LOG.log(Level.FINE, "invalid file: unreadable ({0})", path);
             return false;
         } else {
             return true;

@@ -47,11 +47,6 @@
             <version>5.10.2</version>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>org.lz4</groupId>
-            <artifactId>lz4-pure-java</artifactId>
-            <version>1.7.0</version>
-        </dependency>
         <!-- JavaFX 21 (win classifier provides native libraries on Windows) -->
         <dependency>
             <groupId>org.openjfx</groupId>

@@ -1,6 +1,7 @@
 package resaver.gui;
 
 import java.io.IOException;
+import java.net.URI;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -14,10 +15,28 @@ public final class DebugLogger {
         return INSTANCE;
     }
 
+    /**
+     * Returns the directory where log files are written.
+     * For the jpackage exe this resolves to the exe's own directory.
+     * For dev (maven -jar) this resolves to the project root.
+     */
     public static Path getLogDir() {
-        String appData = System.getenv("APPDATA");
-        if (appData == null) appData = System.getProperty("user.home");
-        return Paths.get(appData, "ReSaver");
+        try {
+            URI uri = resaver.ReSaver.class
+                    .getProtectionDomain().getCodeSource().getLocation().toURI();
+            Path codePath = Paths.get(uri);
+            // classes dir (IDE/exec plugin) → go up one level to project root
+            if (Files.isDirectory(codePath)) {
+                Path parent = codePath.getParent();
+                return parent != null ? parent : codePath;
+            }
+            // .jar file: jar → app/ → exe dir (jpackage) or project root (dev)
+            Path parent = codePath.getParent();
+            Path grandparent = parent != null ? parent.getParent() : null;
+            return grandparent != null ? grandparent : (parent != null ? parent : codePath);
+        } catch (Exception ex) {
+            return Paths.get(System.getProperty("user.dir", "."));
+        }
     }
 
     public synchronized void setEnabled(boolean enable) {
