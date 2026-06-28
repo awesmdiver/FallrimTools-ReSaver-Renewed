@@ -35,7 +35,7 @@ import resaver.gui.SaveWindow;
  *
  * @author Mark Fairchild
  */
-@Command(name = "ReSaver", mixinStandardHelpOptions = true, version = "FallrimTools ReSaver (Renewed) 6.0", description = "")
+@Command(name = "ReSaver", mixinStandardHelpOptions = true, version = "FallrimTools ReSaver (Renewed) 1.0.0", description = "")
 public class ReSaver implements Callable<Integer> {
 
     /**

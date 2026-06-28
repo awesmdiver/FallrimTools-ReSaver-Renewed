@@ -2,7 +2,7 @@
 
 A community-maintained, modernized fork of [FallrimTools ReSaver](https://github.com/mdfairch/FallrimTools) — the save file editor for **Skyrim** (LE, SE, VR) and **Fallout 4**.
 
-Originally developed by **Mark Fairchild**. This fork updates the project for current and future versions of Java, modernizes the UI, and adds Linux support.
+Originally developed by **Mark Fairchild**. This fork picks up where the original left off at **6.0.643** (the last release on [Nexus Mods](https://www.nexusmods.com/skyrimspecialedition/mods/5031)) and updates the project for current and future versions of Java, modernizes the UI, and adds Linux support. The (Renewed) fork starts its own versioning at **v1.0.0**.
 
 ---
 

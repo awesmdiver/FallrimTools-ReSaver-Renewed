@@ -2,11 +2,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <url>https://www.nexusmods.com/skyrimspecialedition/mods/5031</url>
+    <url>https://github.com/awesmdiver/FallrimTools-ReSaver-Renewed</url>
     <modelVersion>4.0.0</modelVersion>
     <groupId>resaver</groupId>
     <artifactId>ReSaver</artifactId>
-    <version>6.0</version>
+    <version>1.0.0</version>
     <packaging>jar</packaging>
     <name>FallrimTools ReSaver (Renewed)</name>
 

@@ -65,7 +65,7 @@ echo === Packaging with jpackage ===
   --java-options "javafx.swing=ALL-UNNAMED" ^
   --java-options "--enable-native-access=javafx.graphics,javafx.base,ALL-UNNAMED" ^
   --name ReSaver ^
-  --app-version 6.0 ^
+  --app-version 1.0.0 ^
   --description "FallrimTools ReSaver (Renewed)" ^
   --icon src\main\resources\Disk.ico ^
   --win-console ^
