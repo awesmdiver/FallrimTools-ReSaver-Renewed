@@ -52,15 +52,19 @@ mvn -version
 
 If `JAVA_HOME` and `mvn` are already on your `PATH` you can skip this step.
 
-Otherwise, copy the template and fill in your paths:
-
+**For cmd / batch:**
 ```bat
 copy build-config.bat.template build-config.bat
 ```
+Open `build-config.bat` and uncomment/fill in `JPACKAGE_JDK` and/or `MVN`.
 
-Open `build-config.bat` in a text editor and uncomment the lines for
-`JPACKAGE_JDK` and/or `MVN`. This file is git-ignored so your local paths
-are never committed.
+**For PowerShell:**
+```powershell
+Copy-Item build-config.ps1.template build-config.ps1
+```
+Open `build-config.ps1` and uncomment/fill in `$JPACKAGE_JDK` and/or `$MVN`.
+
+Both files are git-ignored so your local paths are never committed.
 
 ### 4. Build
 
@@ -68,6 +72,12 @@ are never committed.
 
 ```bat
 build-exe.bat
+```
+
+Or from PowerShell:
+
+```powershell
+.\build-exe.ps1
 ```
 
 **Development run** — launch directly from `target\` without packaging:

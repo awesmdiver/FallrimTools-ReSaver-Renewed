@@ -1,5 +1,5 @@
 @echo off
-REM ─────────────────────────────────────────────────────────────────────────────
+REM -----------------------------------------------------------------------------
 REM  ReSaver build configuration
 REM
 REM  HOW TO USE:
@@ -10,7 +10,7 @@ REM
 REM  If JAVA_HOME and mvn are already on your system PATH you don't need
 REM  build-config.bat at all — build-exe.bat and ReSaver.bat will find them
 REM  automatically.
-REM ─────────────────────────────────────────────────────────────────────────────
+REM -----------------------------------------------------------------------------
 
 REM  Path to your JDK 21+ installation directory (NOT a JRE — must include
 REM  jpackage.exe in the bin\ subfolder).

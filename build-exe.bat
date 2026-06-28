@@ -4,11 +4,11 @@ setlocal
 echo === FallrimTools ReSaver (Renewed) ===
 echo.
 
-REM ─── Load local build configuration ─────────────────────────────────────────
+REM --- Load local build configuration -----------------------------------------
 REM  Copy build-config.bat.template to build-config.bat to set custom paths.
 if exist "%~dp0build-config.bat" call "%~dp0build-config.bat"
 
-REM ─── Resolve Maven ───────────────────────────────────────────────────────────
+REM --- Resolve Maven -----------------------------------------------------------
 REM  Uses MVN from build-config.bat, then MAVEN_HOME, then "mvn" on PATH.
 if not defined MVN (
     if defined MAVEN_HOME (
@@ -18,7 +18,7 @@ if not defined MVN (
     )
 )
 
-REM ─── Resolve JDK ─────────────────────────────────────────────────────────────
+REM --- Resolve JDK -------------------------------------------------------------
 REM  Uses JPACKAGE_JDK from build-config.bat, then JAVA_HOME.
 if not defined JPACKAGE_JDK (
     if defined JAVA_HOME (

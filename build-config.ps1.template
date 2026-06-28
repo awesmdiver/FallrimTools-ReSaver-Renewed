@@ -1,0 +1,27 @@
+# ---------------------------------------------------------------------------
+# ReSaver build configuration for PowerShell
+#
+# HOW TO USE:
+#   Copy this file to build-config.ps1 and fill in the paths below.
+#   build-config.ps1 is git-ignored so your local paths are never committed.
+#
+#   If JAVA_HOME and mvn are already set in your environment you don't need
+#   build-config.ps1 at all -- build-exe.ps1 finds them automatically.
+# ---------------------------------------------------------------------------
+
+# Path to your JDK 21+ installation directory (NOT a JRE -- must include
+# jpackage.exe in the bin\ subfolder).
+# If not set here, $env:JAVA_HOME is used.
+#
+# Examples:
+#   $JPACKAGE_JDK = "C:\Program Files\Eclipse Adoptium\jdk-21.0.7-hotspot"
+#   $JPACKAGE_JDK = "C:\Program Files\Microsoft\jdk-21.0.7.7-hotspot"
+#   $JPACKAGE_JDK = "C:\Program Files\Amazon Corretto\jdk21.0.7_9"
+#
+# $JPACKAGE_JDK = "C:\Path\To\Your\jdk-21"
+
+
+# Path to the Maven executable.
+# If not set here, "mvn" from your system PATH is used.
+#
+# $MVN = "C:\Tools\maven\apache-maven-3.9.x\bin\mvn.cmd"

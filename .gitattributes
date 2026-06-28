@@ -2,9 +2,11 @@
 *.sh            text eol=lf
 *.sh.template   text eol=lf
 
-# Windows batch files use CRLF
+# Windows batch and PowerShell files use CRLF
 *.bat               text eol=crlf
 *.bat.template      text eol=crlf
+*.ps1               text eol=crlf
+*.ps1.template      text eol=crlf
 
 # Source and config files: normalize to LF in repo, checkout with native endings
 *.java      text eol=lf
