@@ -24,6 +24,7 @@ echo === Packaging with jpackage ===
   --java-options "javafx.graphics=ALL-UNNAMED" ^
   --java-options "--add-reads" ^
   --java-options "javafx.swing=ALL-UNNAMED" ^
+  --java-options "--enable-native-access=javafx.graphics,javafx.base" ^
   --name ReSaver ^
   --app-version 6.0 ^
   --description "FallrimTools ReSaver - Skyrim Save Editor" ^
