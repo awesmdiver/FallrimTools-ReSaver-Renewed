@@ -40,9 +40,9 @@ import resaver.Game;
  * @author Mark Fairchild
  */
 @SuppressWarnings("serial")
-public class ReSaverSettings extends JDialog {
+public class ReSaver_RenewedSettings extends JDialog {
 
-    public ReSaverSettings(SaveWindow parent, Game currentGame) {
+    public ReSaver_RenewedSettings(SaveWindow parent, Game currentGame) {
         super(parent, true);
         super.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         super.setLocationRelativeTo(parent);
@@ -233,7 +233,7 @@ public class ReSaverSettings extends JDialog {
     }
 
     static private final Path HOME = Paths.get(System.getProperty("user.home"), "appData", "local", "ModOrganizer"); //NOI18N
-    static final private java.util.prefs.Preferences PREFS = java.util.prefs.Preferences.userNodeForPackage(resaver.ReSaver.class);
+    static final private java.util.prefs.Preferences PREFS = java.util.prefs.Preferences.userNodeForPackage(resaver.ReSaver_Renewed.class);
     static final private ResourceBundle I18N = ResourceBundle.getBundle("Strings");
 
 }

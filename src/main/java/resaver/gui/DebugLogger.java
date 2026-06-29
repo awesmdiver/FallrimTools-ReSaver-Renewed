@@ -22,7 +22,7 @@ public final class DebugLogger {
      */
     public static Path getLogDir() {
         try {
-            URI uri = resaver.ReSaver.class
+            URI uri = resaver.ReSaver_Renewed.class
                     .getProtectionDomain().getCodeSource().getLocation().toURI();
             Path codePath = Paths.get(uri);
             // classes dir (IDE/exec plugin) → go up one level to project root

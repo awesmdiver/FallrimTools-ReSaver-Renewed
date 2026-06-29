@@ -103,7 +103,7 @@ public class Scanner extends SwingWorker<resaver.Analysis, Double> {
             this.PROGRESS.accept(I18N.getString("SCANNER_ORGANIZING"));
             final Map<Path, Plugin> PLUGINPATHS = PLUGINS.getPaths();
             
-            boolean indiscriminate = java.util.prefs.Preferences.userNodeForPackage(resaver.ReSaver.class).getBoolean("settings.parseIndiscriminate", false);
+            boolean indiscriminate = java.util.prefs.Preferences.userNodeForPackage(resaver.ReSaver_Renewed.class).getBoolean("settings.parseIndiscriminate", false);
             
             final Map<Plugin, Path> PLUGINFILEMAP = MODS.stream()
                     .flatMap(mod -> mod.getESPFiles().stream())

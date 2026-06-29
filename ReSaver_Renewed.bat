@@ -21,4 +21,4 @@ if not defined JPACKAGE_JDK (
   --add-reads javafx.swing=ALL-UNNAMED ^
   --enable-native-access=javafx.graphics,javafx.base,ALL-UNNAMED ^
   -Xms512m -Xmx4g ^
-  -jar target\ReSaver.jar %*
+  -jar target\ReSaver_Renewed.jar %*

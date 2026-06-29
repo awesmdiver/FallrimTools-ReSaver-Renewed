@@ -1067,7 +1067,7 @@ abstract public class Configurator {
     static final Pattern MODLIST_REGEX = Pattern.compile(MODLIST_PATTERN);
 
     static final public PathMatcher GLOB_INI = FileSystems.getDefault().getPathMatcher("glob:**.ini");
-    static final private java.util.prefs.Preferences PREFS = java.util.prefs.Preferences.userNodeForPackage(resaver.ReSaver.class);
+    static final private java.util.prefs.Preferences PREFS = java.util.prefs.Preferences.userNodeForPackage(resaver.ReSaver_Renewed.class);
     static final private Pattern KEY_VALUE = Pattern.compile("^(.+)=(?:@ByteArray\\((.+)\\)|(.+))$", Pattern.CASE_INSENSITIVE);
     static private final Path MO2ROOT = Paths.get(System.getProperty("user.home"), "appData", "local", "ModOrganizer");
     static private final Path MYGAMES = new JFileChooser().getFileSystemView().getDefaultDirectory().toPath().resolve("My Games");

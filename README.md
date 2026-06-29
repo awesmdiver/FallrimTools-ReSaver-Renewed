@@ -37,7 +37,7 @@ ReSaver lets you inspect and edit Skyrim and Fallout 4 save files. It is most co
 
 Pre-built releases for Windows are available on the [Releases](../../releases) page.
 
-Extract the zip — this creates a `ReSaver Renewed` folder — then run `ReSaver Renewed.exe` inside it. No Java installation required.
+Extract the zip — this creates a `ReSaver_Renewed` folder — then run `ReSaver_Renewed.exe` inside it. No Java installation required.
 
 ---
 
@@ -64,7 +64,7 @@ chmod +x build.sh && ./build.sh
 ## Usage
 
 ```
-ReSaver Renewed [options] [save-file]
+ReSaver_Renewed [options] [save-file]
 
 Options:
   -r, --reopen        Reopen the most recently opened save file

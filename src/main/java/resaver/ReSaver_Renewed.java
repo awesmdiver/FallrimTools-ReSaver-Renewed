@@ -31,18 +31,18 @@ import resaver.gui.Configurator;
 import resaver.gui.SaveWindow;
 
 /**
- * Entry class for ReSaver.
+ * Entry class for ReSaver Renewed.
  *
  * @author Mark Fairchild
  */
-@Command(name = "ReSaver", mixinStandardHelpOptions = true, version = "FallrimTools ReSaver (Renewed) 1.0.0", description = "")
-public class ReSaver implements Callable<Integer> {
+@Command(name = "ReSaver_Renewed", mixinStandardHelpOptions = true, version = "FallrimTools ReSaver (Renewed) 1.0.0", description = "")
+public class ReSaver_Renewed implements Callable<Integer> {
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        new CommandLine(new ReSaver()).execute(args);
+        new CommandLine(new ReSaver_Renewed()).execute(args);
     }
 
     /**
@@ -128,8 +128,8 @@ public class ReSaver implements Callable<Integer> {
     }
 
 
-    static final Logger LOG = Logger.getLogger(ReSaver.class.getCanonicalName());
-    static final private Preferences PREFS = Preferences.userNodeForPackage(resaver.ReSaver.class);
+    static final Logger LOG = Logger.getLogger(ReSaver_Renewed.class.getCanonicalName());
+    static final private Preferences PREFS = Preferences.userNodeForPackage(resaver.ReSaver_Renewed.class);
 
     @Option(names = {"-r", "--reopen"}, description = "Reopens the most recently opened savefile (ignored if a valid savefile is specified).")
     private boolean REOPEN_OPTION;

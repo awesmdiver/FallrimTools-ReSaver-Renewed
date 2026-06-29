@@ -5,7 +5,7 @@
 
 .DESCRIPTION
     Compiles the project with Maven and packages it into a self-contained
-    app-image (dist\ReSaver\ReSaver.exe) using jpackage.
+    app-image (dist\ReSaver_Renewed\ReSaver_Renewed.exe) using jpackage.
 
     Paths are resolved in this order:
       1. Variables set in build-config.ps1 (if the file exists)
@@ -80,8 +80,8 @@ Write-Host "=== Packaging with jpackage ===" -ForegroundColor Cyan
 # jpackage writes it verbatim into the app launcher config as a runtime token.
 & $jpackage `
     --input target `
-    --main-jar ReSaver.jar `
-    --main-class resaver.ReSaver `
+    --main-jar ReSaver_Renewed.jar `
+    --main-class resaver.ReSaver_Renewed `
     --runtime-image $JPACKAGE_JDK `
     --java-options "--module-path" `
     --java-options '$APPDIR/lib' `
@@ -93,7 +93,7 @@ Write-Host "=== Packaging with jpackage ===" -ForegroundColor Cyan
     --java-options "--add-reads" `
     --java-options "javafx.swing=ALL-UNNAMED" `
     --java-options "--enable-native-access=javafx.graphics,javafx.base,ALL-UNNAMED" `
-    --name ReSaver `
+    --name ReSaver_Renewed `
     --app-version 1.0.0 `
     --description "FallrimTools ReSaver (Renewed)" `
     --icon src\main\resources\Disk.ico `
@@ -104,7 +104,7 @@ Write-Host "=== Packaging with jpackage ===" -ForegroundColor Cyan
 if ($LASTEXITCODE -eq 0) {
     Write-Host ""
     Write-Host "=== Build complete ===" -ForegroundColor Green
-    Write-Host "Executable: dist\ReSaver\ReSaver.exe"
+    Write-Host "Executable: dist\ReSaver_Renewed\ReSaver_Renewed.exe"
 } else {
     Write-Error "jpackage failed"
     exit 1

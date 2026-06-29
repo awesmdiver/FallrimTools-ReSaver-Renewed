@@ -68,7 +68,7 @@ Both files are git-ignored so your local paths are never committed.
 
 ### 4. Build
 
-**Full build** — produces `dist\ReSaver\ReSaver.exe`:
+**Full build** — produces `dist\ReSaver_Renewed\ReSaver_Renewed.exe`:
 
 ```bat
 build-exe.bat
@@ -84,7 +84,7 @@ Or from PowerShell:
 
 ```bat
 mvn package -DskipTests
-ReSaver.bat [save-file]
+ReSaver_Renewed.bat [save-file]
 ```
 
 ---
@@ -145,12 +145,12 @@ Open `build-config.sh` and uncomment/set `JPACKAGE_JDK` and/or `MVN`.
 ### 4. Make scripts executable (first time only)
 
 ```bash
-chmod +x build.sh ReSaver.sh
+chmod +x build.sh ReSaver_Renewed.sh
 ```
 
 ### 5. Build
 
-**Full build** — produces `dist/ReSaver/bin/ReSaver`:
+**Full build** — produces `dist/ReSaver_Renewed/bin/ReSaver_Renewed`:
 
 ```bash
 ./build.sh
@@ -160,7 +160,7 @@ chmod +x build.sh ReSaver.sh
 
 ```bash
 mvn package -DskipTests
-./ReSaver.sh [save-file]
+./ReSaver_Renewed.sh [save-file]
 ```
 
 ### Notes for Linux users
@@ -189,9 +189,9 @@ General → Font scaling.
 
 ## macOS
 
-The process is the same as Linux. Use `build.sh` and `ReSaver.sh`.
+The process is the same as Linux. Use `build.sh` and `ReSaver_Renewed.sh`.
 
-For jpackage on macOS, `--type app-image` produces a `dist/ReSaver/` directory.
+For jpackage on macOS, `--type app-image` produces a `dist/ReSaver_Renewed/` directory.
 To produce a `.dmg` or `.pkg` change the `--type` flag in `build.sh`.
 
 Install JDK via Homebrew: `brew install --cask temurin@21`

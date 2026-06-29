@@ -51,8 +51,8 @@ echo.
 echo === Packaging with jpackage ===
 "%JPACKAGE%" ^
   --input target ^
-  --main-jar ReSaver.jar ^
-  --main-class resaver.ReSaver ^
+  --main-jar ReSaver_Renewed.jar ^
+  --main-class resaver.ReSaver_Renewed ^
   --runtime-image "%JPACKAGE_JDK%" ^
   --java-options "--module-path" ^
   --java-options "$APPDIR/lib" ^
@@ -64,7 +64,7 @@ echo === Packaging with jpackage ===
   --java-options "--add-reads" ^
   --java-options "javafx.swing=ALL-UNNAMED" ^
   --java-options "--enable-native-access=javafx.graphics,javafx.base,ALL-UNNAMED" ^
-  --name ReSaver ^
+  --name ReSaver_Renewed ^
   --app-version 1.0.0 ^
   --description "FallrimTools ReSaver (Renewed)" ^
   --icon src\main\resources\Disk.ico ^
@@ -75,7 +75,7 @@ echo === Packaging with jpackage ===
 if %errorlevel% equ 0 (
     echo.
     echo === Build complete ===
-    echo Executable: dist\ReSaver\ReSaver.exe
+    echo Executable: dist\ReSaver_Renewed\ReSaver_Renewed.exe
 ) else (
     echo jpackage FAILED
     exit /b 1

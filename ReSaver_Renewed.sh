@@ -2,7 +2,7 @@
 # Dev launcher for Linux/macOS — runs directly from target/ without packaging.
 # Run "mvn package -DskipTests" first to populate target/.
 #
-# Usage: ./ReSaver.sh [options] [save-file]
+# Usage: ./ReSaver_Renewed.sh [options] [save-file]
 
 set -euo pipefail
 
@@ -29,4 +29,4 @@ exec "$JPACKAGE_JDK/bin/java" \
   --add-reads javafx.swing=ALL-UNNAMED \
   --enable-native-access=javafx.graphics,javafx.base,ALL-UNNAMED \
   -Xms512m -Xmx4g \
-  -jar "$SCRIPT_DIR/target/ReSaver.jar" "$@"
+  -jar "$SCRIPT_DIR/target/ReSaver_Renewed.jar" "$@"

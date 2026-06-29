@@ -202,7 +202,7 @@ final public class SaveWindow extends JFrame {
      */
     private void initComponents(Path path, boolean autoParse) {
         this.resetTitle(null);
-        this.setDropTarget(new ReSaverDropTarget(f -> open(f, PREFS.getBoolean("settings.alwaysParsePlugins", true))));
+        this.setDropTarget(new ReSaver_RenewedDropTarget(f -> open(f, PREFS.getBoolean("settings.alwaysParsePlugins", true))));
         this.TREE.addTreeSelectionListener(e -> updateContextInformation());
         this.DATASCROLLER.setBorder(BorderFactory.createTitledBorder(this.DATASCROLLER.getBorder(), "Data"));
         this.INFOSCROLLER.setBorder(BorderFactory.createTitledBorder(this.INFOSCROLLER.getBorder(), "Information"));
@@ -1162,7 +1162,7 @@ final public class SaveWindow extends JFrame {
      */
     private void showSettings() {
         Game currentGame = (null == this.save ? null : this.save.getHeader().GAME);
-        ReSaverSettings settings = new ReSaverSettings(this, currentGame);
+        ReSaver_RenewedSettings settings = new ReSaver_RenewedSettings(this, currentGame);
         settings.pack();
         settings.setVisible(true);
     }
@@ -2538,7 +2538,7 @@ final public class SaveWindow extends JFrame {
     final private mf.Timer TIMER;
     final private Object JFXPANEL;
 
-    static final private java.util.prefs.Preferences PREFS = java.util.prefs.Preferences.userNodeForPackage(resaver.ReSaver.class);
+    static final private java.util.prefs.Preferences PREFS = java.util.prefs.Preferences.userNodeForPackage(resaver.ReSaver_Renewed.class);
     static final private Logger LOG = Logger.getLogger(SaveWindow.class.getCanonicalName());
     static final private Pattern URLPATTERN = Pattern.compile("(?<type>[a-z]+):\\/\\/(?<address>[^\\[\\]]+)(?:\\[(?<target1>\\d+)\\])?(?:\\[(?<target2>\\d+)\\])?$");
 

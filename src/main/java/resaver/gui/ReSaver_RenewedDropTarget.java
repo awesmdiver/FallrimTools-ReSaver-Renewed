@@ -35,9 +35,9 @@ import java.util.logging.Logger;
  *
  */
 @SuppressWarnings("serial")
-public class ReSaverDropTarget extends DropTarget {
+public class ReSaver_RenewedDropTarget extends DropTarget {
 
-    public ReSaverDropTarget(Consumer<Path> handler) {
+    public ReSaver_RenewedDropTarget(Consumer<Path> handler) {
         this.HANDLER = Objects.requireNonNull(handler);
     }
     
@@ -72,5 +72,5 @@ public class ReSaverDropTarget extends DropTarget {
     }
 
     final private Consumer<Path> HANDLER;
-    static final private Logger LOG = Logger.getLogger(ReSaverDropTarget.class.getCanonicalName());
+    static final private Logger LOG = Logger.getLogger(ReSaver_RenewedDropTarget.class.getCanonicalName());
 }
