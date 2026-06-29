@@ -18,6 +18,17 @@ if not defined MVN (
     )
 )
 
+REM Verify Maven is reachable before attempting build.
+call "%MVN%" -version >nul 2>&1
+if errorlevel 1 (
+    echo ERROR: Maven not found ^(tried: %MVN%^).
+    echo        Install Maven and add its bin\ directory to PATH, set MAVEN_HOME,
+    echo        or copy build-config.bat.template to build-config.bat and set MVN.
+    echo        Download: https://maven.apache.org/download.cgi
+    pause
+    exit /b 1
+)
+
 REM --- Resolve JDK -------------------------------------------------------------
 REM  Uses JPACKAGE_JDK from build-config.bat, then JAVA_HOME.
 if not defined JPACKAGE_JDK (
@@ -26,6 +37,8 @@ if not defined JPACKAGE_JDK (
     ) else (
         echo ERROR: No JDK found. Set JAVA_HOME, or copy build-config.bat.template
         echo        to build-config.bat and set JPACKAGE_JDK to your JDK 21+ path.
+        echo        Download: https://adoptium.net
+        pause
         exit /b 1
     )
 )
@@ -34,6 +47,7 @@ set "JPACKAGE=%JPACKAGE_JDK%\bin\jpackage.exe"
 if not exist "%JPACKAGE%" (
     echo ERROR: jpackage not found at: %JPACKAGE%
     echo        Make sure JPACKAGE_JDK points to a full JDK 21+, not a JRE.
+    pause
     exit /b 1
 )
 
@@ -43,7 +57,12 @@ echo.
 
 echo === Compiling with Maven ===
 call "%MVN%" clean package -DskipTests
-if %errorlevel% neq 0 ( echo BUILD FAILED & exit /b 1 )
+if %errorlevel% neq 0 (
+    echo.
+    echo BUILD FAILED — see Maven output above for details.
+    pause
+    exit /b 1
+)
 
 if exist dist rmdir /s /q dist
 
@@ -72,12 +91,16 @@ echo === Packaging with jpackage ===
   --type app-image ^
   --dest dist
 
-if %errorlevel% equ 0 (
+if %errorlevel% neq 0 (
     echo.
-    echo === Build complete ===
-    echo Executable: dist\ReSaver_Renewed\ReSaver_Renewed.exe
-) else (
-    echo jpackage FAILED
+    echo PACKAGING FAILED — see jpackage output above for details.
+    pause
     exit /b 1
 )
+
+echo.
+echo === Build complete ===
+echo Executable: dist\ReSaver_Renewed\ReSaver_Renewed.exe
+echo.
 endlocal
+pause
